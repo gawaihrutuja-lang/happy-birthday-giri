@@ -1,0 +1,701 @@
+/* ==========================================================================
+   1. RESET & VARIABLE DEFINITIONS
+   ========================================================================== */
+:root {
+    --primary-color: #ff4d6d;
+    --primary-hover: #ff758f;
+    --bg-gradient: linear-gradient(135deg, #ffe5ec 0%, #ffccd5 100%);
+    --card-bg: rgba(255, 255, 255, 0.45);
+    --card-border: rgba(255, 255, 255, 0.6);
+    --text-color: #4a1525;
+    --text-secondary: #7a2240;
+    --shadow: 0 8px 32px 0 rgba(255, 77, 109, 0.15);
+    --font-main: 'Poppins', sans-serif;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-romantic: 'Dancing Script', cursive;
+}
+
+[data-theme="dark"] {
+    --bg-gradient: linear-gradient(135deg, #1a0f12 0%, #2d151e 100%);
+    --card-bg: rgba(45, 21, 30, 0.6);
+    --card-border: rgba(255, 77, 109, 0.2);
+    --text-color: #fff0f3;
+    --text-secondary: #ffb3c1;
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* ==========================================================================
+   2. BACKGROUND ANIMATIONS (Stars, Hearts, Balloons)
+   ========================================================================== */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.hearts span {
+    position: absolute;
+    bottom: -50px;
+    font-size: 24px;
+    animation: floatHearts 12s linear infinite;
+    opacity: 0;
+}
+
+/* Spread out the floating hearts randomly */
+.hearts span:nth-child(1) { left: 10%; animation-delay: 0s; }
+.hearts span:nth-child(2) { left: 25%; animation-delay: 2s; font-size: 30px; }
+.hearts span:nth-child(3) { left: 40%; animation-delay: 4s; }
+.hearts span:nth-child(4) { left: 55%; animation-delay: 1.5s; font-size: 35px; }
+.hearts span:nth-child(5) { left: 70%; animation-delay: 5s; }
+.hearts span:nth-child(6) { left: 85%; animation-delay: 3s; }
+.hearts span:nth-child(7) { left: 15%; animation-delay: 7s; }
+.hearts span:nth-child(8) { left: 50%; animation-delay: 8s; }
+.hearts span:nth-child(9) { left: 75%; animation-delay: 6s; }
+.hearts span:nth-child(10) { left: 90%; animation-delay: 9s; }
+
+@keyframes floatHearts {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Balloons container styling */
+.balloons {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.balloon {
+    position: absolute;
+    bottom: -150px;
+    width: 60px;
+    height: 75px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    animation: floatBalloons 15s ease-in infinite;
+}
+.balloon::after {
+    content: "▲";
+    font-size: 10px;
+    position: absolute;
+    bottom: -8px;
+    left: 24px;
+    color: inherit;
+}
+.balloon.red { background: #ff4d6d; color: #ff4d6d; left: 15%; animation-delay: 1s; }
+.balloon.pink { background: #ff85a1; color: #ff85a1; left: 45%; animation-delay: 5s; }
+.balloon.white { background: #fff; color: #fff; left: 70%; animation-delay: 3s; }
+.balloon.purple { background: #c77dff; color: #c77dff; left: 85%; animation-delay: 8s; }
+
+@keyframes floatBalloons {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.7; }
+    100% { transform: translateY(-120vh) translateX(50px); opacity: 0; }
+}
+
+/* ==========================================================================
+   3. UI SHARED COMPONENTS (Glass Cards, Buttons)
+   ========================================================================== */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
+    transition: transform 0.3s ease, background 0.5s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+}
+
+button, .lucky-btn {
+    font-family: var(--font-main);
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+button:hover, .lucky-btn:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 77, 109, 0.6);
+}
+
+button:active, .lucky-btn:active {
+    transform: scale(0.98);
+}
+
+/* Section formatting */
+section {
+    padding: 5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+section h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Theme Toggle Button */
+#themeToggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sparkle trail elements */
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999;
+    animation: sparkleAnim 0.8s ease-out forwards;
+}
+
+@keyframes sparkleAnim {
+    0% { transform: translate(0,0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--mdx), var(--mdy)) scale(0); opacity: 0; }
+}
+
+/* ==========================================================================
+   4. LOCK SCREEN / PASSWORD WINDOW
+   ========================================================================== */
+#lock-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-gradient);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+#lock-screen.unlocked {
+    transform: translateY(-100%);
+}
+
+.lock-card h1 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin: 1rem 0;
+}
+
+.heart-lock {
+    font-size: 4rem;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+.password-box {
+    margin: 2rem 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.password-box input {
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: 2px solid var(--primary-color);
+    outline: none;
+    text-align: center;
+    font-size: 1rem;
+    width: 80%;
+    max-width: 280px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.hint {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+#error-msg {
+    color: #d90429;
+    margin-top: 1rem;
+    font-weight: 600;
+    display: none;
+}
+
+/* ==========================================================================
+   5. MAIN PANELS & APPLICATION LAYOUT
+   ========================================================================== */
+#main-content {
+    display: none; /* Blocked until lock screen validates input */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.hero-card h2 {
+    color: var(--primary-color);
+    letter-spacing: 2px;
+    font-size: 1.4rem;
+}
+.hero-card h1 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin: 1rem 0;
+}
+.hero-card h1 span {
+    color: var(--primary-color);
+    display: block;
+    font-size: 3rem;
+}
+.hero-card p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Love Meter Section */
+.meter {
+    width: 80%;
+    max-width: 400px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ff758f, #ff4d6d);
+    border-radius: 20px;
+    transition: width 0.5s ease;
+}
+
+#loveText {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Typing Letter Container */
+#typingText {
+    min-height: 120px;
+    font-family: var(--font-romantic);
+    font-size: 1.8rem;
+    line-height: 1.6;
+    text-align: left;
+    white-space: pre-line;
+}
+
+/* Our Journey Timeline */
+.timeline {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-left: 30px;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 5px;
+    width: 3px;
+    height: 95%;
+    background: var(--primary-color);
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+.timeline-item .dot {
+    position: absolute;
+    left: -26px;
+    top: 6px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: 3px solid var(--bg-gradient);
+}
+.timeline-item .content {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+}
+.timeline-item h3 {
+    margin-bottom: 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   6. INTERACTIVE BIRTHDAY CAKE
+   ========================================================================== */
+.cake-container {
+    position: relative;
+    width: 200px;
+    height: 220px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.cake-bottom {
+    width: 180px;
+    height: 60px;
+    background: #6c584c;
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 0 -10px 0 #533e2d;
+}
+
+.cake-top {
+    width: 140px;
+    height: 50px;
+    background: #f7aef8;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: -5px;
+    position: relative;
+    box-shadow: inset 0 -8px 0 #e09fde;
+}
+
+.candle {
+    width: 12px;
+    height: 40px;
+    background: linear-gradient(to right, #ff4d6d, #ffccd5);
+    border-radius: 3px 3px 0 0;
+    z-index: 2;
+}
+
+#flame {
+    width: 16px;
+    height: 24px;
+    background: #ffb703;
+    border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+    position: absolute;
+    bottom: 145px;
+    z-index: 3;
+    animation: flicker 0.6s infinite alternate;
+    box-shadow: 0 0 10px #ffb703, 0 0 20px #fb8500;
+}
+
+#smoke {
+    position: absolute;
+    bottom: 145px;
+    width: 4px;
+    height: 20px;
+    background: rgba(200,200,200,0.5);
+    filter: blur(2px);
+    border-radius: 50%;
+    display: none;
+    animation: escapeSmoke 2s forwards;
+}
+
+@keyframes flicker {
+    0% { transform: scale(1) rotate(-2deg); }
+    100% { transform: scale(1.1) rotate(2deg); }
+}
+
+@keyframes escapeSmoke {
+    0% { transform: translateY(0) scaleX(1); opacity: 0.8; }
+    100% { transform: translateY(-40px) scaleX(3); opacity: 0; }
+}
+
+#cakeText {
+    margin: 1rem 0;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   7. INTERACTIVE SURPRISE GIFT MODULES
+   ========================================================================== */
+.section-subtitle {
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.gift-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.gift-box {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.gift-lid {
+    width: 110px;
+    height: 25px;
+    background: #ff4d6d;
+    border-radius: 4px;
+    z-index: 2;
+    transition: transform 0.5s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.gift-body {
+    width: 100px;
+    height: 90px;
+    background: #ff758f;
+    border-radius: 0 0 8px 8px;
+    position: relative;
+}
+
+/* Gift Ribbon Trim */
+.gift-body::before {
+    content: '';
+    position: absolute;
+    left: 42px;
+    width: 16px;
+    height: 100%;
+    background: #fff0f3;
+}
+
+.gift-box.open .gift-lid {
+    transform: translateY(-40px) rotate(-15deg);
+}
+
+.gift-message {
+    position: absolute;
+    top: -60px;
+    background: var(--card-bg);
+    border: 1px solid var(--primary-color);
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    width: 180px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    box-shadow: var(--shadow);
+    z-index: 10;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Mini Catching Game Engine */
+#gameArea {
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    border: 2px dashed var(--primary-color);
+    background: rgba(255,255,255,0.2);
+    border-radius: 16px;
+    margin: 1.5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#movingHeart {
+    position: absolute;
+    font-size: 2rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    padding: 10px;
+}
+
+#gameScore {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Lucky Gift Container */
+.lucky-container {
+    display: flex;
+    gap: 15px;
+    margin: 1.5rem 0;
+}
+#luckyResult {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    min-height: 30px;
+}
+
+/* Secret Achievement Box */
+#achievementBadge {
+    margin-top: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #ffb703;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px 25px;
+    border-radius: 50px;
+    border: 2px dashed #ffb703;
+    animation: pulse 1.2s infinite;
+    display: inline-block;
+}
+
+/* Final Love Letter Custom Styling */
+.final-letter p {
+    margin-bottom: 1.2rem;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+.final-letter .highlight {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 2rem 0;
+}
+.final-letter h3 {
+    font-family: var(--font-romantic);
+    font-size: 2rem;
+}
+
+/* Celebration Deck */
+.celebration-card h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+.celebration-card h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   8. EXTRA DYNAMIC FOOTERS & BACKGROUND FX
+   ========================================================================== */
+.footer {
+    padding-bottom: 3rem;
+}
+.footer-sign {
+    font-family: var(--font-romantic);
+    font-size: 2rem;
+    margin-top: 1.5rem;
+    line-height: 1.2;
+}
+.footer-sign span {
+    font-family: var(--font-main);
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Automated pop up quotes toast */
+.floating-quote {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: var(--card-bg);
+    border: 1px solid var(--primary-color);
+    padding: 12px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+    z-index: 99;
+    font-weight: 500;
+    transform: translateY(150px);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-quote.show {
+    transform: translateY(0);
+}
+
+#confettiCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1500;
+}
+
+/* ==========================================================================
+   9. DEVICE DISPLAY RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 600px) {
+    .glass-card { padding: 1.5rem; }
+    .hero-card h1 { font-size: 1.8rem; }
+    .hero-card h1 span { font-size: 2.2rem; }
+    section h2 { font-size: 1.6rem; }
+    .gift-container { gap: 15px; }
+    .gift-box { width: 130px; height: 130px; }
+    .gift-lid { width: 90px; }
+    .gift-body { width: 80px; height: 75px; }
+    .gift-body::before { left: 32px; }
+}

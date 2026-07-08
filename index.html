@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday Giri ❤️</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- Animated Background -->
+<!-- ========================= -->
+
+<div class="background">
+
+    <div class="stars"></div>
+
+    <div class="hearts">
+        <span>❤️</span>
+        <span>💖</span>
+        <span>💕</span>
+        <span>💗</span>
+        <span>💞</span>
+        <span>❤️</span>
+        <span>💘</span>
+        <span>💕</span>
+        <span>💖</span>
+        <span>❤️</span>
+    </div>
+
+    <div class="balloons">
+        <div class="balloon red"></div>
+        <div class="balloon pink"></div>
+        <div class="balloon white"></div>
+        <div class="balloon purple"></div>
+    </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- Cursor Sparkles -->
+<!-- ========================= -->
+
+<div id="sparkle-container"></div>
+
+<!-- ========================= -->
+<!-- Dark Mode -->
+<!-- ========================= -->
+
+<button id="themeToggle">
+
+🌙
+
+</button>
+
+<!-- ========================= -->
+<!-- PASSWORD SCREEN -->
+<!-- ========================= -->
+
+<section id="lock-screen">
+
+<div class="glass-card lock-card">
+
+<div class="heart-lock">
+
+❤️
+
+</div>
+
+<h1>
+
+Only My Birthday Boy Can Enter
+
+</h1>
+
+<p>
+
+A tiny surprise is waiting...
+
+</p>
+
+<div class="password-box">
+
+<input
+type="password"
+id="passCode"
+placeholder="Enter Secret Password">
+
+<button id="unlockBtn">
+
+Unlock ❤️
+
+</button>
+
+</div>
+
+<p class="hint">
+
+Hint : The nickname you call me 😉
+
+</p>
+
+<p id="error-msg">
+
+Wrong password 😝
+
+Try Again Girri ❤️
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================= -->
+
+<main id="main-content">
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="glass-card hero-card">
+
+<h2>
+
+🎉 HAPPY BIRTHDAY 🎉
+
+</h2>
+
+<h1>
+
+My Dear
+
+<span>
+
+GIRRI ❤️
+
+</span>
+
+</h1>
+
+<p>
+
+The best person...
+
+The cutest boy...
+
+The one who makes my world beautiful.
+
+</p>
+
+<button id="heroBtn">
+
+Open My Heart 💖
+
+</button>
+
+</div>
+
+</section>
+
+<!-- LOVE METER -->
+
+<section class="love-meter-section">
+
+<h2>
+
+❤️ Love Meter ❤️
+
+</h2>
+
+<div class="meter">
+
+<div
+id="loveFill"
+class="fill">
+
+</div>
+
+</div>
+
+<p id="loveText">
+
+0% Loaded...
+
+</p>
+
+</section>
+
+<!-- RANDOM MESSAGE -->
+
+<section class="message-section">
+
+<div class="glass-card">
+
+<h2>
+
+Random Love Message
+
+</h2>
+
+<p id="randomMessage">
+
+Click below ❤️
+
+</p>
+
+<button id="newMessage">
+
+Show Message
+
+</button>
+
+</div>
+
+</section>
+
+<!-- TYPING LETTER -->
+
+<section class="letter-section">
+
+<div class="glass-card">
+
+<h2>
+
+💌 A Letter For You
+
+</h2>
+
+<p id="typingText">
+
+</p>
+
+</div>
+
+</section>
+
+<!-- OUR JOURNEY -->
+
+<section class="timeline-section">
+
+<h2>
+
+📜 Our Journey
+
+</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+
+<div class="dot"></div>
+
+<div class="content">
+
+<h3>
+
+📚 First Meeting
+
+</h3>
+
+<p>
+
+Two classmates...
+
+Who never imagined this beautiful story.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="dot"></div>
+
+<div class="content">
+
+<h3>
+
+😊 Best Friends
+
+</h3>
+
+<p>
+
+Talking every day...
+
+Laughing over silly things...
+
+Creating memories.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="dot"></div>
+
+<div class="content">
+
+<h3>
+
+❤️ Love Story
+
+</h3>
+
+<p>
+
+Distance never mattered...
+
+Because hearts always stayed together.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Cake Section Starts Here -->
+
+<section class="cake-section">
+
+<h2>
+
+🎂 Make A Wish
+
+</h2>
+
+<div class="cake-container">
+
+<div id="smoke"></div>
+
+<div id="flame"></div>
+
+<div class="candle"></div>
+
+<div class="cake-top"></div>
+
+<div class="cake-bottom"></div>
+
+</div>
+
+<p id="cakeText">
+
+Blow the candle ❤️
+
+</p>
+
+<button id="cutCake">
+
+Cut Cake 🍰
+
+</button>
+
+</section>
+<!-- ========================= -->
+<!-- SURPRISE GIFT BOXES -->
+<!-- ========================= -->
+
+<section class="gift-section">
+
+    <h2>🎁 Special Gifts For You 🎁</h2>
+
+    <p class="section-subtitle">
+        Open each gift one by one ❤️
+    </p>
+
+    <div class="gift-container">
+
+        <div class="gift-box" onclick="openGift(1)">
+            <div class="gift-lid"></div>
+            <div class="gift-body"></div>
+
+            <div id="giftMessage1" class="gift-message hidden">
+                ❤️ You are my favourite notification.
+            </div>
+        </div>
+
+        <div class="gift-box" onclick="openGift(2)">
+            <div class="gift-lid"></div>
+            <div class="gift-body"></div>
+
+            <div id="giftMessage2" class="gift-message hidden">
+                💕 I fall for you every single day.
+            </div>
+        </div>
+
+        <div class="gift-box" onclick="openGift(3)">
+            <div class="gift-lid"></div>
+            <div class="gift-body"></div>
+
+            <div id="giftMessage3" class="gift-message hidden">
+                💖 Happy Birthday, My Forever Person.
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- MINI GAME -->
+<!-- ========================= -->
+
+<section class="game-section">
+
+    <h2>❤️ Catch The Heart ❤️</h2>
+
+    <p>
+        Click the moving heart 10 times!
+    </p>
+
+    <div id="gameArea">
+
+        <div id="movingHeart">
+            ❤️
+        </div>
+
+    </div>
+
+    <p id="gameScore">
+
+        Hearts Collected :
+        <span>0</span>/10
+
+    </p>
+
+</section>
+
+<!-- ========================= -->
+<!-- LUCKY GIFT -->
+<!-- ========================= -->
+
+<section class="lucky-section">
+
+    <h2>
+
+        🎁 Lucky Gift 🎁
+
+    </h2>
+
+    <p>
+
+        Choose one surprise!
+
+    </p>
+
+    <div class="lucky-container">
+
+        <button class="lucky-btn" onclick="luckyGift()">
+
+            Gift 1
+
+        </button>
+
+        <button class="lucky-btn" onclick="luckyGift()">
+
+            Gift 2
+
+        </button>
+
+        <button class="lucky-btn" onclick="luckyGift()">
+
+            Gift 3
+
+        </button>
+
+    </div>
+
+    <p id="luckyResult">
+
+    </p>
+
+</section>
+
+<!-- ========================= -->
+<!-- ACHIEVEMENT -->
+<!-- ========================= -->
+
+<section class="achievement-section">
+
+    <div class="glass-card">
+
+        <h2>
+
+            🏆 Secret Achievement
+
+        </h2>
+
+        <p>
+
+            Finish every surprise to unlock it!
+
+        </p>
+
+        <button onclick="unlockAchievement()">
+
+            Unlock
+
+        </button>
+
+        <div id="achievementBadge" class="hidden">
+
+            👑 Best Boyfriend Ever 👑
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- FINAL LOVE LETTER -->
+<!-- ========================= -->
+
+<section class="final-letter">
+
+    <div class="glass-card">
+
+        <h2>
+
+            💌 One Last Thing...
+
+        </h2>
+
+        <p>
+
+            Even though we are miles apart,
+            you are always the closest person
+            to my heart.
+
+        </p>
+
+        <p>
+
+            Thank you for making me smile,
+            laugh and feel loved every single day.
+
+        </p>
+
+        <p>
+
+            I wish this birthday brings you
+            endless happiness, success,
+            good health and every dream
+            you have ever wished for.
+
+        </p>
+
+        <p class="highlight">
+
+            I Love You So Much ❤️
+
+        </p>
+
+        <h3>
+
+            — Your Gabre 💖
+
+        </h3>
+
+    </div>
+
+</section>
+
+<!-- ========================= -->
+<!-- GRAND CELEBRATION -->
+<!-- ========================= -->
+
+<section class="celebration-section">
+
+    <div class="glass-card celebration-card">
+
+        <h1>
+
+            🎉 HAPPY BIRTHDAY 🎉
+
+        </h1>
+
+        <h2>
+
+            GIRRI ❤️
+
+        </h2>
+
+        <p>
+
+            May your smile never fade,
+            your dreams always come true,
+            and our story continue forever.
+
+        </p>
+
+        <button id="celebrateBtn">
+
+            Celebrate 🎆
+
+        </button>
+
+    </div>
+
+</section>
+<!-- ========================================= -->
+<!-- FOOTER -->
+<!-- ========================================= -->
+
+<footer class="footer">
+
+    <div class="glass-card footer-card">
+
+        <h2>❤️ Thank You For Visiting ❤️</h2>
+
+        <p>
+            I hope this little surprise made you smile.
+        </p>
+
+        <p>
+            No matter how many birthdays come,
+            you'll always be my favourite person.
+        </p>
+
+        <h3 class="footer-sign">
+            Forever Yours,<br>
+            <span>Gabre ❤️</span>
+        </h3>
+
+    </div>
+
+</footer>
+
+<!-- ========================================= -->
+<!-- FLOATING LOVE QUOTES -->
+<!-- ========================================= -->
+
+<div id="floatingQuote" class="floating-quote">
+    ❤️ You are my happy place.
+</div>
+
+<!-- ========================================= -->
+<!-- CONFETTI CANVAS -->
+<!-- ========================================= -->
+
+<canvas id="confettiCanvas"></canvas>
+
+<!-- ========================================= -->
+<!-- AUDIO (Optional for future use) -->
+<!-- ========================================= -->
+
+<audio id="birthdayMusic" preload="auto">
+    <!-- You can add a music file later if you ever want -->
+</audio>
+
+<!-- ========================================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================================= -->
+
+<script src="script.js"></script>
+
+</main>
+
+</body>
+</html>
